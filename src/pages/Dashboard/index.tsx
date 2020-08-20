@@ -44,21 +44,22 @@ const Dashboard: React.FC = () => {
       const { transactions, balance } = response.data;
 
       const trans = transactions.map(transaction => {
+        let formattedValue;
         if (transaction.type === 'outcome') {
-          transaction.formattedValue = `- ${formatValue(transaction.value)}`;
+          formattedValue = `- ${formatValue(transaction.value)}`;
         } else {
-          transaction.formattedValue = formatValue(transaction.value);
+          formattedValue = formatValue(transaction.value);
         }
 
         const date = transaction.created_at;
         const timeZone = 'America/Sao_Paulo';
         const zonedDate = utcToZonedTime(date, timeZone);
 
-        transaction.formattedDate = format(zonedDate, 'dd/MM/yyyy', {
+        const formattedDate = format(zonedDate, 'dd/MM/yyyy', {
           timeZone: 'America/Sao_Paulo',
         });
 
-        return transaction;
+        return { ...transaction, formattedValue, formattedDate };
       });
 
       balance.income = formatValue(Number(balance.income));

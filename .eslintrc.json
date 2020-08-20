@@ -25,7 +25,6 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-param-reassign": "off",
     "no-shadow": "off",
     "spaced-comment": "off",
     "react/jsx-props-no-spreading": "off",
